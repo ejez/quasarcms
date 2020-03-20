@@ -15,9 +15,9 @@ module.exports = {
     // Uncomment any of the lines below to choose desired strictness,
     // but leave only one uncommented!
     // See https://eslint.vuejs.org/rules/#available-rules
-    'plugin:vue/essential' // Priority A: Essential (Error Prevention)
+    // 'plugin:vue/essential' // Priority A: Essential (Error Prevention)
     // 'plugin:vue/strongly-recommended' // Priority B: Strongly Recommended (Improving Readability)
-    // 'plugin:vue/recommended' // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
+    'plugin:vue/recommended' // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
   ],
 
   // required to lint *.vue files
@@ -53,6 +53,21 @@ module.exports = {
     'prefer-promise-reject-errors': 'off',
 
     // allow debugger during development only
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
+    // temporary fix for eslint error
+    // https://github.com/babel/babel-eslint/issues/799#issuecomment-568195009
+    "indent": [
+      "error",
+      2,
+      {
+        "ignoredNodes": [
+          "TemplateLiteral"
+        ]
+      }
+    ],
+    "template-curly-spacing": [
+      "off"
+    ]
   }
 }
