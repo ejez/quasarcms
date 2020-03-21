@@ -12,7 +12,9 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@noor-project/components-lib-vue": "^0.0.2",
     "@quasar/extras": "^1.0.0",
+    "noor": "^0.1.0",
     "quasar": "^1.0.0",
     "vue-i18n": "^8.15.5"
   },
