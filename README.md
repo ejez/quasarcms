@@ -1,4 +1,4 @@
-# Quasar App (cmsexample)
+# Quasar App (quasarcms)
 
 A Quasar Framework app
 

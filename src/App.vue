@@ -18,9 +18,9 @@ export default {
       // fallback metas when not defined in child components.
       // notice also that we removed the 'title' and 'meta description' tags
       // from 'src/index.template.html' to avoid having duplicates
-      title: 'Cmsexample',
+      title: 'Quasarcms',
       meta: {
-        description: { name: 'description', content: 'A Cmsexample app' }
+        description: { name: 'description', content: 'A Quasarcms app' }
       },
       link: {}
     }
