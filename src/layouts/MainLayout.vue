@@ -15,7 +15,7 @@
           Quasar App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <qm-lang-selector />
       </q-toolbar>
     </q-header>
 
@@ -26,6 +26,37 @@
       content-class="bg-grey-1"
     >
       <q-list>
+        <q-item
+          clickable
+          :to="`/${$q.lang.isoName}`"
+          exact
+        >
+          <q-item-section avatar>
+            <q-icon name="house" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ $t('Home') }}</q-item-label>
+            <q-item-label caption>
+              {{ $t('Home') }}
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          :to="`/${$q.lang.isoName}/${aboutPageRoutepaths[$q.lang.isoName]}`"
+          exact
+        >
+          <q-item-section avatar>
+            <q-icon name="info" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ $t('About') }}</q-item-label>
+            <q-item-label caption>
+              {{ $t('About') }}
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+
         <q-item-label
           header
           class="text-grey-8"
@@ -48,17 +79,23 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink'
+import QmLangSelector from 'components/QmLangSelector'
 
 export default {
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
+    QmLangSelector
   },
 
   data () {
     return {
       leftDrawerOpen: false,
+      aboutPageRoutepaths: {
+        ar: 'من_نحن',
+        en: 'about-us'
+      },
       essentialLinks: [
         {
           title: 'Docs',
