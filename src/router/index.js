@@ -4,6 +4,7 @@ import { Quasar, Cookies } from 'quasar'
 import getRoutes from './routes/routes'
 import setAppLanguage from 'src/i18n/set-app-language'
 import { i18n } from 'boot/i18n'
+import { scrollToElement } from 'src/utils/scroll'
 
 Vue.use(VueRouter)
 
@@ -20,7 +21,17 @@ export default async function ({ ssrContext }) {
   const routes = await getRoutes(ssrContext)
 
   const Router = new VueRouter({
-    scrollBehavior: () => ({ x: 0, y: 0 }),
+    scrollBehavior (to, from, savedPosition) {
+      if (to.hash) {
+        // scrolling to an anchor is buggy with vue-router, so we do it with the
+        // following instead
+        scrollToElement({ el: to.hash })
+        return false
+      }
+      // scroll to previous position if any (if not scroll to top)
+      return savedPosition || { x: 0, y: 0 }
+    },
+
     routes,
 
     // Leave these as they are and change in quasar.conf.js instead!

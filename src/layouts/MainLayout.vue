@@ -1,5 +1,8 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout
+    view="lHh Lpr lFf"
+    :style="layoutStyles"
+  >
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -57,6 +60,34 @@
           </q-item-section>
         </q-item>
 
+        <q-item
+          v-if="$q.lang.isoName === 'en'"
+          clickable
+          to="/en/docs"
+          exact
+        >
+          <q-item-section avatar>
+            <q-icon name="library_books" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Docs</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item
+          v-if="$q.lang.isoName === 'en'"
+          clickable
+          to="/en/demo"
+          exact
+        >
+          <q-item-section avatar>
+            <q-icon name="ondemand_video" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Demo</q-item-label>
+          </q-item-section>
+        </q-item>
+
         <q-item-label
           header
           class="text-grey-8"
@@ -96,6 +127,7 @@ export default {
         ar: 'من_نحن',
         en: 'about-us'
       },
+      layoutStyles: {},
       essentialLinks: [
         {
           title: 'Docs',
@@ -135,6 +167,24 @@ export default {
         }
       ]
     }
+  },
+
+  mounted () {
+    // get header element
+    const header = document.querySelector('header.q-header')
+    // define a css variable that contains the header height
+    this.layoutStyles['--header-height'] = header
+      ? `${header.offsetHeight}px`
+      : 0
   }
 }
 </script>
+
+<style lang="sass">
+// When directly navigating to a url with an anchor, for example:
+// http://example.com/contact#Email, and to avoid that the anchor element gets
+// hidden by the page header we use the header height to set 'scroll-margin-top'
+// of the target anchor element.
+.q-page-container :target
+  scroll-margin-top: var(--header-height)
+</style>

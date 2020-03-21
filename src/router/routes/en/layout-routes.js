@@ -13,5 +13,8 @@ export default [
     path: 'about-us',
     component: () => import('pages/About.vue'),
     meta: commonMetas.about
-  }
+  },
+
+  { path: 'docs', component: () => import('pages/docs.vmd') },
+  { path: 'demo', component: () => import('pages/demo.vmd') }
 ]

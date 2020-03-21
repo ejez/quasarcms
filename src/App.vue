@@ -14,7 +14,16 @@ export default {
       ? this.$ssrContext.req.headers.host
       : window.location.host
 
-    const meta = { link: {} }
+    const meta = {
+      // fallback metas when not defined in child components.
+      // notice also that we removed the 'title' and 'meta description' tags
+      // from 'src/index.template.html' to avoid having duplicates
+      title: 'Cmsexample',
+      meta: {
+        description: { name: 'description', content: 'A Cmsexample app' }
+      },
+      link: {}
+    }
 
     // x-default hreflang
     const xDefaultLang = this.$route.meta.defaultTranslation
